@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <windows.h>
-
+#define FILENAME "students.dat"
 COORD coord = {0, 0};
 
 void gotoxy(int x, int y)
@@ -27,16 +27,16 @@ void hideCursor()
 
 void displayM(int selected)
 {
-    char arr[6][20] = // Updated to 6 for the new "Display File Contents" option
+    char arr[6][20] = 
     {
         "Add_New_Student",
         "Update_Student",
         "Calculate_Grades",
         "Display_Results",
-        "Display_File_Contents", // New option
+        "Display_File_Contents", 
         "Exit"
     };
-    int n = 6; // Updated to 6 for the new option
+    int n = 6;
     int boxWidth = 30;
     int startX = 45;
     int startY = 5;
@@ -105,11 +105,9 @@ struct Students
 };
 typedef struct Students student;
 
-#define FILENAME "students.dat"
-
 void saveStudentsToFile(student *s1, int studentCount)
 {
-    FILE *file = fopen(FILENAME, "wb"); // Open file in write-binary mode
+    FILE *file = fopen(FILENAME, "wb"); 
     if (file == NULL)
     {
         printf("Error opening file for writing!\n");
@@ -179,7 +177,7 @@ void loadStudentsFromFile(student **s1, int *studentCount)
 
 void displayFileContents()
 {
-    FILE *file = fopen(FILENAME, "rb"); // Open file in read-binary mode
+    FILE *file = fopen(FILENAME, "rb"); 
     if (file == NULL)
     {
         printf("No data file found or error opening file!\n");
@@ -187,7 +185,7 @@ void displayFileContents()
     }
 
     int studentCount;
-    fread(&studentCount, sizeof(int), 1, file); // Read the number of students
+    fread(&studentCount, sizeof(int), 1, file); 
 
     printf("Total Students: %d\n", studentCount);
     printf("---------------------------------\n");
@@ -408,7 +406,7 @@ int main()
     student *s1 = NULL;
 
     int selected = 0;
-    int n = 6; // Updated to 6 for the new "Display File Contents" option
+    int n = 6; 
     char ch;
 
     hideCursor();
